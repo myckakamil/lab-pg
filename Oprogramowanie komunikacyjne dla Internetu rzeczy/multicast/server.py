@@ -2,7 +2,6 @@ import socket
 import struct
 import time
 
-# Lista adresów multicastowych i port
 MULTICAST_GROUPS = ['224.0.0.1']
 PORT = 5007
 
