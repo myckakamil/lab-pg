@@ -18,7 +18,7 @@ def multicast_sender():
                 message = f"Hejka"
                 print(f"Sending: {message} to {group}:{PORT}")
                 sock.sendto(message.encode('utf-8'), (group, PORT))
-                time.sleep(2)  # Możesz dostosować czas wysyłania między grupami
+                time.sleep(2)
     except KeyboardInterrupt:
         print("Sender terminated.")
     finally:
