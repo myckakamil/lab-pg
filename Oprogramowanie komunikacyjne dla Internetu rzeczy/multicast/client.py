@@ -1,7 +1,6 @@
 import socket
 import struct
 
-# Multicast address and port
 MULTICAST_GROUP = '224.0.0.1'
 PORT = 5007
 
