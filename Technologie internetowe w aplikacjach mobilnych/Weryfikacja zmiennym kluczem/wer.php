@@ -1,8 +1,30 @@
 <?php
+// Obsługuje zapytanie OPTIONS (preflight request)
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    // Wysyła odpowiedź bez treści
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+    header('Access-Control-Allow-Headers: Content-Type');
+    http_response_code(204); // Brak treści w odpowiedzi
+    exit;
+}
+
+// Nagłówki CORS
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+header('Access-Control-Allow-Headers: Content-Type');
+
+// Kontynuacja działania skryptu dla metod POST/GET
+session_start();
+header('Content-Type: application/json; charset=utf-8');
+
+// Kontynuacja działania skryptu dla metod POST/GET
+session_start();
 header('Content-Type: application/json; charset=utf-8');
 
 $users = [
-    'student' => 'pg'
+    'student' => 'pg',
+'test' => 'test'
 ];
 
 $input = file_get_contents('php://input');
@@ -15,7 +37,7 @@ $nonce = $data['nonce'];
 $password = $users[$user];
 
 function calculateNet($password, $nonce) {
-    return base64_encode(base64_encode($password) . $nonce); 
+    return md5(md5($password) . $nonce);
 }
 
 $expectedNet = calculateNet($password, $nonce);
