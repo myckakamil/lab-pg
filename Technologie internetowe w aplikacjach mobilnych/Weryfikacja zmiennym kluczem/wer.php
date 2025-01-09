@@ -24,7 +24,7 @@ header('Content-Type: application/json; charset=utf-8');
 
 $users = [
     'student' => 'pg',
-'test' => 'test'
+    'test' => 'test'
 ];
 
 $input = file_get_contents('php://input');

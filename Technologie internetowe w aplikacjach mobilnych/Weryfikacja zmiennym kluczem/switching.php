@@ -6,7 +6,7 @@ header('Access-Control-Allow-Headers: Content-Type');
 
 function http_ping($serwer) {
     $czas = microtime(true);
-    file('http://' . $serwer);
+    file('http://' . $serwer); 
     return microtime(true) - $czas;
 }
 
