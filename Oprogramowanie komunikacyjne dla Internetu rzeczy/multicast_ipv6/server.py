@@ -5,7 +5,6 @@ import socket
 import struct
 
 def join_multicast_group(sock, multicast_group):
-    """Dodaje gniazdo do grupy multicastowej."""
     group_bin = socket.inet_pton(socket.AF_INET6, multicast_group)
     # Dołączamy do grupy multicastowej (idx = 0 dla interfejsu domyślnego)
     mreq = group_bin + struct.pack('@I', 0)
@@ -13,7 +12,6 @@ def join_multicast_group(sock, multicast_group):
     return mreq  # Zwracamy mreq do późniejszego opuszczenia grupy
 
 def multicast_server(multicast_group, port):
-    """Uruchamia serwer multicastowy."""
     sock = socket.socket(socket.AF_INET6, socket.SOCK_DGRAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
@@ -42,7 +40,7 @@ def multicast_server(multicast_group, port):
         print("Opuszczono grupę multicastową i zamknięto gniazdo.")
 
 if __name__ == "__main__":
-    multicast_group = "ff02::1"
+    multicast_group = "ff22::1"
     port = 12345
     multicast_server(multicast_group, port)
 

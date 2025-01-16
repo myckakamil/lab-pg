@@ -6,7 +6,6 @@ import threading
 import time
 
 def send_messages(sock, multicast_group, port, can_send_event):
-    """Wątek wysyłający wiadomości."""
     while True:
         try:
             # Oczekiwanie na pozwolenie wysłania wiadomości
@@ -19,7 +18,6 @@ def send_messages(sock, multicast_group, port, can_send_event):
             break
 
 def receive_messages(sock, own_address, can_send_event):
-    """Wątek odbierający wiadomości."""
     while True:
         try:
             response, addr = sock.recvfrom(1024)
@@ -32,7 +30,6 @@ def receive_messages(sock, own_address, can_send_event):
             break
 
 def multicast_client(multicast_group, port):
-    """Uruchamia klienta multicastowego."""
     sock = socket.socket(socket.AF_INET6, socket.SOCK_DGRAM)
     sock.setsockopt(socket.IPPROTO_IPV6, socket.IPV6_MULTICAST_HOPS, 1)  # TTL = 1
     sock.bind(("::", 0))  # Bindowanie do nasłuchiwania
@@ -70,7 +67,7 @@ def multicast_client(multicast_group, port):
         print("Opuszczono grupę multicastową i zamknięto gniazdo.")
 
 if __name__ == "__main__":
-    multicast_group = "ff02::1"
+    multicast_group = "ff22::1"
     port = 12345
     multicast_client(multicast_group, port)
 
